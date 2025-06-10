@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zoromart - India's Online Shopping Destination</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="banner-content">
+                <span>📱 Download zoroMart App & Get Extra 10% Off</span>
+                <button class="banner-close" onclick="closeBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>zoromart</h1>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for products, brands and more" id="search-input">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="search-suggestions" id="search-suggestions"></div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="action-item" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                        <span>Theme</span>
+                    </div>
+                    <div class="action-item" onclick="openLoginModal()">
+                        <i class="fas fa-user"></i>
+                        <span>Login</span>
+                    </div>
+                    <div class="action-item" onclick="goToPage('cart.html')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <div class="cart-badge" id="cart-badge">0</div>
+                    </div>
+                    <div class="action-item dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <span>More</span>
+                        <div class="dropdown-menu">
+                            <a href="account.html">My Account</a>
+                            <a href="orders.html">Orders</a>
+                            <a href="wishlist.html">Wishlist</a>
+                            <a href="help.html">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="categories-menu">
+                    <button class="categories-btn" onclick="toggleCategories()">
+                        <i class="fas fa-bars"></i>
+                        <span>All Categories</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="categories-dropdown" id="categories-dropdown">
+                        <div class="category-item" data-category="electronics">
+                            <i class="fas fa-laptop"></i>
+                            <span>Electronics</span>
+                        </div>
+                        <div class="category-item" data-category="fashion">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Fashion</span>
+                        </div>
+                        <div class="category-item" data-category="home">
+                            <i class="fas fa-home"></i>
+                            <span>Home & Kitchen</span>
+                        </div>
+                        <div class="category-item" data-category="books">
+                            <i class="fas fa-book"></i>
+                            <span>Books</span>
+                        </div>
+                        <div class="category-item" data-category="sports">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Sports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="deals.html" class="nav-link">Today's Deals</a>
+                    <a href="brands.html" class="nav-link">Top Brands</a>
+                    <a href="sell.html" class="nav-link">Sell on zoroMart</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <h2>Mega Electronics Sale</h2>
+                            <p>Up to 80% Off on Smartphones, Laptops & More</p>
+                            <button class="cta-btn" onclick="goToPage('products.html?category=electronics')">
+                                Shop Now <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhT25DC_8zF7EbyDn_qD9tPfGnU2B-ofwqPg&s" alt="Electronics Sale">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <h2>Fashion Fiesta</h2>
+                            <p>Trendy Clothes & Accessories Starting ₹199</p>
+                            <button class="cta-btn" onclick="goToPage('products.html?category=fashion')">
+                                Explore Fashion <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://s3.envato.com/files/302890952/Fashion%20Sale%20-%20Store%20Promo.jpg" alt="Fashion Sale">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <h2>Home Essentials</h2>
+                            <p>Transform Your Home with Amazing Deals</p>
+                            <button class="cta-btn" onclick="goToPage('products.html?category=home')">
+                                Shop Home <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GD6lpfFCDXy4zfc6pZzu7BpjyV6r0sv7s4toFA5eEbkfcCgXEBMJdmMIXsaluEQil3o&usqp=CAU" alt="Home Sale">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <button class="slider-btn prev" onclick="previousSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-btn next" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- Quick Categories -->
+    <section class="quick-categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="goToCategory('electronics')">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Electronics</h3>
+                    <p>Mobiles, Laptops & More</p>
+                    <div class="category-overlay">
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="goToCategory('fashion')">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Fashion</h3>
+                    <p>Clothing & Accessories</p>
+                    <div class="category-overlay">
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="goToCategory('home')">
+                    <div class="category-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Home & Living</h3>
+                    <p>Furniture & Decor</p>
+                    <div class="category-overlay">
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="goToCategory('beauty')">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Beauty</h3>
+                    <p>Skincare & Makeup</p>
+                    <div class="category-overlay">
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="goToCategory('books')">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Books</h3>
+                    <p>Education & Entertainment</p>
+                    <div class="category-overlay">
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="goToCategory('sports')">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Sports</h3>
+                    <p>Fitness & Outdoor</p>
+                    <div class="category-overlay">
+                        <span>Explore Now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trending Products</h2>
+                <a href="products.html" class="view-all-btn">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid" id="featured-products-grid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals-section">
+        <div class="container">
+            <div class="deals-content">
+                <div class="deal-timer">
+                    <h2>⚡ Flash Deals</h2>
+                    <div class="timer" id="deal-timer">
+                        <div class="time-unit">
+                            <span class="time-value" id="hours">12</span>
+                            <span class="time-label">Hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="minutes">34</span>
+                            <span class="time-label">Minutes</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="seconds">56</span>
+                            <span class="time-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="deals-grid">
+                    <div class="deal-card">
+                        <div class="deal-badge">70% OFF</div>
+                        <img src="https://www.sony.co.in/image/e3beeee2eeeb7580a61adcab32538851?fmt=pjpeg&wid=1200&hei=470&bgcolor=F1F5F9&bgc=F1F5F9" alt="Deal Product">
+                        <h4>Wireless Headphones</h4>
+                        <div class="deal-price">
+                            <span class="current-price">₹899</span>
+                            <span class="original-price">₹2,999</span>
+                        </div>
+                        <button class="deal-btn">Grab Deal</button>
+                    </div>
+                    
+                    <div class="deal-card">
+                        <div class="deal-badge">60% OFF</div>
+                        <img src="https://cdn.thewirecutter.com/wp-content/media/2024/09/androidsmartwatches-2048px-05515-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp" alt="Deal Product">
+                        <h4>Smart Watch</h4>
+                        <div class="deal-price">
+                            <span class="current-price">₹1,999</span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <button class="deal-btn">Grab Deal</button>
+                    </div>
+                    
+                    <div class="deal-card">
+                        <div class="deal-badge">50% OFF</div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIzMu5WqLvTGhf1yFCO2l_MGUs6eTuPEiu_Q&s" alt="Deal Product">
+                        <h4>Bluetooth Speaker</h4>
+                        <div class="deal-price">
+                            <span class="current-price">₹1,499</span>
+                            <span class="original-price">₹2,999</span>
+                        </div>
+                        <button class="deal-btn">Grab Deal</button>
+                    </div>
+                    
+                    <div class="deal-card">
+                        <div class="deal-badge">80% OFF</div>
+                        <img src="data:image/jpeg;base64,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" alt="Deal Product">
+                        <h4>Power Bank</h4>
+                        <div class="deal-price">
+                            <span class="current-price">₹599</span>
+                            <span class="original-price">₹2,999</span>
+                        </div>
+                        <button class="deal-btn">Grab Deal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Showcase -->
+    <section class="brand-showcase">
+        <div class="container">
+            <h2 class="section-title">Top Brands</h2>
+            <div class="brands-slider">
+                <div class="brand-item">
+                    <img src="https://bsmedia.business-standard.com/_media/bs/img/about-page/1562575696.png" alt="Samsung">
+                </div>
+                <div class="brand-item">
+                    <img src="https://yt3.googleusercontent.com/s5hlNKKDDQWjFGzYNnh8UeOW2j2w6id-cZGx7GdAA3d5Fu7zEi7ZMXEyslysuQUKigXNxtAB=s900-c-k-c0x00ffffff-no-rj" alt="Apple">
+                </div>
+                <div class="brand-item">
+                    <img src="https://fabrikbrands.com/wp-content/uploads/Nike-Logo-History-4-1200x750.png" alt="Nike">
+                </div>
+                <div class="brand-item">
+                    <img src="https://fabrikbrands.com/wp-content/uploads/Adidas-Logo-1-scaled-1155x770.jpg" alt="Adidas">
+                </div>
+                <div class="brand-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjE3wwxw2_S7KNENaG0DFKtDwZ7maDx4Ahzw&s" alt="Sony">
+                </div>
+                <div class="brand-item">
+                    <img src="https://assets.gadgets360cdn.com/pricee/assets/brand/og_lg_logo.png" alt="LG">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>Stay Updated with Latest Deals</h3>
+                    <p>Subscribe to get exclusive offers and early access to sales</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About zoroMart</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">zoroMart Stories</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Cancellation & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report Infringement</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Policy</h4>
+                    <ul>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms Of Use</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Mail Us</h4>
+                    <address>
+                       zoroMart Internet Private Limited,<br><br><br>
+                        vengamedu,<br>
+                        karur,639006,<br>
+                        Tamil Nadu, India
+                    </address>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-features">
+                    <div class="feature-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Shipping</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-undo"></i>
+                        <span>Easy Returns</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-headset"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; since 2025 zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login</h3>
+                <button class="modal-close" onclick="closeModal('login-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Enter Email/Mobile number</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Password</label>
+                        <input type="password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <div class="modal-footer">
+                    <p>New to zoroMart? <a href="#" onclick="openSignupModal()">Create an account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" onclick="scrollToTop()" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

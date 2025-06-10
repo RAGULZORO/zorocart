@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell on zoroMart </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner" id="topBanner">
+        <div class="container">
+            <div class="banner-content">
+                <span>🎉 Start selling today! Zero commission for first 30 days!</span>
+                <button class="banner-close" onclick="closeBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <h1>zoroMart</h1>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for products, brands and more" id="searchInput">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="account.html" class="action-item">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <a href="cart.html" class="action-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                    <div class="action-item dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <span>More</span>
+                        <div class="dropdown-menu">
+                            <a href="help.html">Help Center</a>
+                            <a href="#" onclick="toggleTheme()">Dark Mode</a>
+                            <a href="#">Download App</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="categories-menu">
+                    <button class="categories-btn" onclick="toggleCategories()">
+                        <i class="fas fa-bars"></i>
+                        <span>Categories</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="categories-dropdown" id="categoriesDropdown">
+                        <div class="category-item" onclick="filterByCategory('electronics')">
+                            <i class="fas fa-laptop"></i>
+                            <span>Electronics</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('fashion')">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Fashion</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('home')">
+                            <i class="fas fa-home"></i>
+                            <span>Home & Kitchen</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('books')">
+                            <i class="fas fa-book"></i>
+                            <span>Books</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('sports')">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Sports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="deals.html" class="nav-link">Deals</a>
+                    <a href="brands.html" class="nav-link">Brands</a>
+                    <a href="sell.html" class="nav-link active">Sell</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="sell-page">
+        <!-- Sell Hero -->
+        <section class="sell-hero">
+            <div class="container">
+                <div class="sell-hero-content">
+                    <div class="hero-text">
+                        <h1>🚀 Start Selling on Flipkart</h1>
+                        <p>Join millions of sellers and grow your business with India's largest e-commerce platform</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-number">50M+</span>
+                                <span class="stat-label">Customers</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Sellers</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">150M+</span>
+                                <span class="stat-label">Products</span>
+                            </div>
+                        </div>
+                        <div class="hero-actions">
+                            <button class="btn-primary" onclick="startSelling()">
+                                <i class="fas fa-rocket"></i>
+                                Start Selling Now
+                            </button>
+                            <button class="btn-secondary" onclick="learnMore()">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://m.media-amazon.com/images/G/31/amazonservices/Blog/What_is_an_E-commerce_business.jpg" alt="Sell on zoroMart">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Why Sell on Flipkart -->
+            <section class="why-sell">
+                <h2 class="section-title">Why Sell on zoroMart</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Massive Customer Base</h3>
+                        <p>Reach over 50 million customers across India and grow your business exponentially.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Logistics Support</h3>
+                        <p>Use our world-class fulfillment network to deliver products quickly and efficiently.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Business Growth</h3>
+                        <p>Access powerful analytics and marketing tools to scale your business.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Get dedicated support from our seller success team whenever you need help.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Easy Payments</h3>
+                        <p>Receive payments quickly with our secure and reliable payment system.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile App</h3>
+                        <p>Manage your business on the go with our seller mobile application.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How to Start -->
+            <section class="how-to-start">
+                <h2 class="section-title">How to Start Selling</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Register Your Account</h3>
+                            <p>Sign up with your business details and get verified quickly.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>List Your Products</h3>
+                            <p>Add your products with high-quality images and detailed descriptions.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Start Receiving Orders</h3>
+                            <p>Once approved, start receiving orders from millions of customers.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Grow Your Business</h3>
+                            <p>Use our tools and insights to optimize and scale your business.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seller Registration Form -->
+            <section class="seller-registration">
+                <div class="registration-container">
+                    <div class="registration-header">
+                        <h2>Start Your Selling Journey</h2>
+                        <p>Fill out the form below to begin your registration process</p>
+                    </div>
+                    
+                    <form class="registration-form" id="sellerRegistrationForm">
+                        <div class="form-section">
+                            <h3>Business Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="businessName">Business Name *</label>
+                                    <input type="text" id="businessName" name="businessName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="businessType">Business Type *</label>
+                                    <select id="businessType" name="businessType" required>
+                                        <option value="">Select Business Type</option>
+                                        <option value="individual">Individual</option>
+                                        <option value="proprietorship">Proprietorship</option>
+                                        <option value="partnership">Partnership</option>
+                                        <option value="llp">LLP</option>
+                                        <option value="private-limited">Private Limited</option>
+                                        <option value="public-limited">Public Limited</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="gstNumber">GST Number</label>
+                                    <input type="text" id="gstNumber" name="gstNumber" placeholder="Optional">
+                                </div>
+                                <div class="form-group">
+                                    <label for="panNumber">PAN Number *</label>
+                                    <input type="text" id="panNumber" name="panNumber" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Contact Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Contact Person Name *</label>
+                                    <input type="text" id="contactName" name="contactName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email Address *</label>
+                                    <input type="email" id="contactEmail" name="contactEmail" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone Number *</label>
+                                    <input type="tel" id="contactPhone" name="contactPhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alternatePhone">Alternate Phone</label>
+                                    <input type="tel" id="alternatePhone" name="alternatePhone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Business Address</h3>
+                            <div class="form-group">
+                                <label for="businessAddress">Complete Address *</label>
+                                <textarea id="businessAddress" name="businessAddress" rows="3" required></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State *</label>
+                                    <select id="state" name="state" required>
+                                        <option value="">Select State</option>
+                                        <option value="andhra-pradesh">Andhra Pradesh</option>
+                                        <option value="karnataka">Karnataka</option>
+                                        <option value="maharashtra">Maharashtra</option>
+                                        <option value="tamil-nadu">Tamil Nadu</option>
+                                        <!-- Add more states -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pincode">PIN Code *</label>
+                                    <input type="text" id="pincode" name="pincode" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country *</label>
+                                    <input type="text" id="country" name="country" value="India" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Product Categories</h3>
+                            <div class="category-selection">
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="categories" value="electronics">
+                                    <span class="checkmark"></span>
+                                    Electronics
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="categories" value="fashion">
+                                    <span class="checkmark"></span>
+                                    Fashion
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="categories" value="home">
+                                    <span class="checkmark"></span>
+                                    Home & Kitchen
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="categories" value="books">
+                                    <span class="checkmark"></span>
+                                    Books
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="categories" value="sports">
+                                    <span class="checkmark"></span>
+                                    Sports
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="categories" value="beauty">
+                                    <span class="checkmark"></span>
+                                    Beauty & Personal Care
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Bank Details</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bankName">Bank Name *</label>
+                                    <input type="text" id="bankName" name="bankName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="accountNumber">Account Number *</label>
+                                    <input type="text" id="accountNumber" name="accountNumber" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ifscCode">IFSC Code *</label>
+                                    <input type="text" id="ifscCode" name="ifscCode" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="accountHolderName">Account Holder Name *</label>
+                                    <input type="text" id="accountHolderName" name="accountHolderName" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="terms-section">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="agreeMarketing" name="agreeMarketing">
+                                    <span class="checkmark"></span>
+                                    I agree to receive marketing communications from Flipkart
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="resetForm()">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Registration
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Success Stories -->
+            <section class="success-stories">
+                <h2 class="section-title">Success Stories</h2>
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="https://d2bw95mh2ee04s.cloudfront.net/prod/content/wp-content/uploads/2021/09/23141049/Successful-Amazon-Seller-.png" alt="Seller Success Story">
+                        </div>
+                        <div class="story-content">
+                            <h3>Rajesh Kumar</h3>
+                            <p class="story-business">Electronics Store Owner</p>
+                            <p class="story-text">"zoroMart helped me grow my business from a small local store to serving customers across India. My sales increased by 300% in just 6 months!"</p>
+                            <div class="story-stats">
+                                <span class="stat">300% Growth</span>
+                                <span class="stat">50K+ Orders</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1dL3A69x_KkugcAnRNW7SbgoK3rXrsAWwDw&s" alt="Seller Success Story">
+                        </div>
+                        <div class="story-content">
+                            <h3>Priya Sharma</h3>
+                            <p class="story-business">Fashion Brand Founder</p>
+                            <p class="story-text">"Starting my fashion brand on zoroMart was the best decision. The platform's reach and support helped me build a successful business."</p>
+                            <div class="story-stats">
+                                <span class="stat">500% Growth</span>
+                                <span class="stat">100K+ Customers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgbL_1DIc2Zp35IrOGO0hE0UwbNivIoGA3JQ&s" alt="Seller Success Story">
+                        </div>
+                        <div class="story-content">
+                            <h3>Amit Patel</h3>
+                            <p class="story-business">Home Decor Seller</p>
+                            <p class="story-text">"zoroMart's logistics and customer service support allowed me to focus on what I do best - creating beautiful home decor products."</p>
+                            <div class="story-stats">
+                                <span class="stat">200% Growth</span>
+                                <span class="stat">25K+ Products Sold</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="seller-faq">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How much does it cost to sell on zoroMart</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>zoroMart charges a commission based on the product category, typically ranging from 5% to 20%. There are no listing fees or monthly subscription charges.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How long does the registration process take?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The registration process typically takes 2-7 business days, depending on document verification and approval.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What documents do I need to start selling?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You need PAN card, bank account details, GST certificate (if applicable), and address proof for your business.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do I receive payments?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Payments are transferred to your bank account within 7-15 days after the order is delivered and the return period expires.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Cancellation</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Policy</h4>
+                    <ul>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Mail Us</h4>
+                    <address>zoroMart Internet Private Limited,<br><br><br>
+                        vengamedu,<br>
+                        karur,639006,<br>
+                        Tamil Nadu, India
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-features">
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>Become a Seller</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-gift"></i>
+                        <span>Gift Cards</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help Center</span>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; since 2025 zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon fas fa-check-circle"></i>
+            <span class="notification-message" id="notificationMessage"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="sell.js"></script>
+</body>
+</html>

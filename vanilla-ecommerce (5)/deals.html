@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deals & Offers - zoroMart Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner" id="topBanner">
+        <div class="container">
+            <div class="banner-content">
+                <span>🎉 Super Sale! Up to 80% off on Electronics - Limited Time Offer!</span>
+                <button class="banner-close" onclick="closeBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <h1>zoroMart</h1>
+                    <p class="tagline">Explore <span class="highlight">Plus</span></p>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for products, brands and more" id="searchInput">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="account.html" class="action-item">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <a href="cart.html" class="action-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                    <div class="action-item dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <span>More</span>
+                        <div class="dropdown-menu">
+                            <a href="help.html">Help Center</a>
+                            <a href="#" onclick="toggleTheme()">Dark Mode</a>
+                            <a href="#">Download App</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="categories-menu">
+                    <button class="categories-btn" onclick="toggleCategories()">
+                        <i class="fas fa-bars"></i>
+                        <span>Categories</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="categories-dropdown" id="categoriesDropdown">
+                        <div class="category-item" onclick="filterByCategory('electronics')">
+                            <i class="fas fa-laptop"></i>
+                            <span>Electronics</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('fashion')">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Fashion</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('home')">
+                            <i class="fas fa-home"></i>
+                            <span>Home & Kitchen</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('books')">
+                            <i class="fas fa-book"></i>
+                            <span>Books</span>
+                        </div>
+                        <div class="category-item" onclick="filterByCategory('sports')">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Sports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="deals.html" class="nav-link active">Deals</a>
+                    <a href="brands.html" class="nav-link">Brands</a>
+                    <a href="sell.html" class="nav-link">Sell</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Deals & Offers</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="deals-page">
+        <div class="container">
+            <!-- Deals Hero -->
+            <section class="deals-hero">
+                <div class="deals-hero-content">
+                    <div class="hero-text">
+                        <h1>🔥 Super Deals & Offers</h1>
+                        <p>Discover amazing discounts on your favorite products</p>
+                        <div class="deal-timer">
+                            <h3>Flash Sale Ends In:</h3>
+                            <div class="timer" id="flashTimer">
+                                <div class="time-unit">
+                                    <span class="time-value" id="hours">12</span>
+                                    <span class="time-label">Hours</span>
+                                </div>
+                                <div class="time-unit">
+                                    <span class="time-value" id="minutes">30</span>
+                                    <span class="time-label">Minutes</span>
+                                </div>
+                                <div class="time-unit">
+                                    <span class="time-value" id="seconds">45</span>
+                                    <span class="time-label">Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://www.shutterstock.com/image-vector/daily-deals-banner-template-design-600nw-2485939283.jpg" alt="Deals Hero">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deal Categories -->
+            <section class="deal-categories">
+                <h2 class="section-title">Shop by Deal Type</h2>
+                <div class="deal-category-grid">
+                    <div class="deal-category-card" onclick="filterDeals('flash')">
+                        <div class="category-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Flash Deals</h3>
+                        <p>Limited time offers</p>
+                        <span class="deal-count">50+ deals</span>
+                    </div>
+                    <div class="deal-category-card" onclick="filterDeals('daily')">
+                        <div class="category-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <h3>Daily Deals</h3>
+                        <p>New deals every day</p>
+                        <span class="deal-count">30+ deals</span>
+                    </div>
+                    <div class="deal-category-card" onclick="filterDeals('clearance')">
+                        <div class="category-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3>Clearance Sale</h3>
+                        <p>Up to 80% off</p>
+                        <span class="deal-count">100+ deals</span>
+                    </div>
+                    <div class="deal-category-card" onclick="filterDeals('bundle')">
+                        <div class="category-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Bundle Offers</h3>
+                        <p>Buy more, save more</p>
+                        <span class="deal-count">25+ deals</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deals Content -->
+            <section class="deals-content">
+                <div class="deals-layout">
+                    <!-- Filters Sidebar -->
+                    <aside class="deals-filters">
+                        <div class="filters-header">
+                            <h3>Filters</h3>
+                            <button class="clear-filters" onclick="clearAllFilters()">Clear All</button>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Deal Type</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="flash" onchange="applyFilter('type', this)">
+                                    <span class="checkmark"></span>
+                                    Flash Deals
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="daily" onchange="applyFilter('type', this)">
+                                    <span class="checkmark"></span>
+                                    Daily Deals
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="clearance" onchange="applyFilter('type', this)">
+                                    <span class="checkmark"></span>
+                                    Clearance
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="bundle" onchange="applyFilter('type', this)">
+                                    <span class="checkmark"></span>
+                                    Bundle Offers
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Discount Range</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="10-25" onchange="applyFilter('discount', this)">
+                                    <span class="checkmark"></span>
+                                    10% - 25%
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="25-50" onchange="applyFilter('discount', this)">
+                                    <span class="checkmark"></span>
+                                    25% - 50%
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="50-75" onchange="applyFilter('discount', this)">
+                                    <span class="checkmark"></span>
+                                    50% - 75%
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="75+" onchange="applyFilter('discount', this)">
+                                    <span class="checkmark"></span>
+                                    75% & above
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Category</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="electronics" onchange="applyFilter('category', this)">
+                                    <span class="checkmark"></span>
+                                    Electronics
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="fashion" onchange="applyFilter('category', this)">
+                                    <span class="checkmark"></span>
+                                    Fashion
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="home" onchange="applyFilter('category', this)">
+                                    <span class="checkmark"></span>
+                                    Home & Kitchen
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="books" onchange="applyFilter('category', this)">
+                                    <span class="checkmark"></span>
+                                    Books
+                                </label>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Deals Grid -->
+                    <div class="deals-main">
+                        <div class="deals-header">
+                            <div class="results-info">
+                                <h2>All Deals</h2>
+                                <p class="results-count" id="dealsCount">Showing 1-20 of 150 deals</p>
+                            </div>
+                            <div class="sort-options">
+                                <label for="sortDeals">Sort by:</label>
+                                <select id="sortDeals" onchange="sortDeals(this.value)">
+                                    <option value="relevance">Relevance</option>
+                                    <option value="discount-high">Discount: High to Low</option>
+                                    <option value="discount-low">Discount: Low to High</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="ending-soon">Ending Soon</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="deals-grid" id="dealsGrid">
+                            <!-- Deals will be loaded here by JavaScript -->
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn" onclick="changePage('prev')">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers" id="pageNumbers">
+                                <!-- Page numbers will be generated by JavaScript -->
+                            </div>
+                            <button class="page-btn" onclick="changePage('next')">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Cancellation</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Policy</h4>
+                    <ul>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Mail Us</h4>
+                    <address>
+                        zoroMart Internet Private Limited,
+                        vengamedu,<br>
+                        karur,639006,<br>
+                        Tamil Nadu, India
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-features">
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>Become a Seller</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-gift"></i>
+                        <span>Gift Cards</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help Center</span>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; since 2025 zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon fas fa-check-circle"></i>
+            <span class="notification-message" id="notificationMessage"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="deals.js"></script>
+</body>
+</html>

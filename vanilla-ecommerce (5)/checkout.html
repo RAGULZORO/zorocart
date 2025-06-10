@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - zoroMart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="goToPage('index.html')">
+                    <h1>FlipMart</h1>
+                    <span class="tagline">Explore <span class="highlight">Plus</span></span>
+                </div>
+                
+                <div class="checkout-progress">
+                    <div class="progress-step completed">
+                        <div class="step-number">1</div>
+                        <span>Cart</span>
+                    </div>
+                    <div class="progress-line completed"></div>
+                    <div class="progress-step active">
+                        <div class="step-number">2</div>
+                        <span>Checkout</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">
+                        <div class="step-number">3</div>
+                        <span>Payment</span>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="action-item" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                        <span>Theme</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Page -->
+    <main class="checkout-page">
+        <div class="container">
+            <div class="checkout-content">
+                <!-- Checkout Form -->
+                <div class="checkout-form-section">
+                    <form class="checkout-form" onsubmit="processCheckout(event)">
+                        <!-- Delivery Address -->
+                        <div class="checkout-section">
+                            <div class="section-header">
+                                <h3>
+                                    <span class="step-number">1</span>
+                                    Delivery Address
+                                </h3>
+                            </div>
+                            
+                            <div class="address-selection" id="address-selection">
+                                <!-- Addresses will be loaded here -->
+                            </div>
+                            
+                            <button type="button" class="add-address-btn" onclick="addNewAddress()">
+                                <i class="fas fa-plus"></i>
+                                Add New Address
+                            </button>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="checkout-section">
+                            <div class="section-header">
+                                <h3>
+                                    <span class="step-number">2</span>
+                                    Order Summary
+                                </h3>
+                            </div>
+                            
+                            <div class="order-items" id="checkout-order-items">
+                                <!-- Order items will be loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="checkout-section">
+                            <div class="section-header">
+                                <h3>
+                                    <span class="step-number">3</span>
+                                    Payment Method
+                                </h3>
+                            </div>
+                            
+                            <div class="payment-methods">
+                                <div class="payment-option">
+                                    <input type="radio" id="cod" name="payment" value="cod" checked>
+                                    <label for="cod">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-title">Cash on Delivery</div>
+                                            <div class="payment-desc">Pay when you receive your order</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="payment-option">
+                                    <input type="radio" id="card" name="payment" value="card">
+                                    <label for="card">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-title">Credit/Debit Card</div>
+                                            <div class="payment-desc">Visa, Mastercard, Rupay</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="payment-option">
+                                    <input type="radio" id="upi" name="payment" value="upi">
+                                    <label for="upi">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-title">UPI</div>
+                                            <div class="payment-desc">Pay using UPI apps</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="payment-option">
+                                    <input type="radio" id="wallet" name="payment" value="wallet">
+                                    <label for="wallet">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-wallet"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-title">Digital Wallet</div>
+                                            <div class="payment-desc">Paytm, PhonePe, Google Pay</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Place Order Button -->
+                        <div class="place-order-section">
+                            <button type="submit" class="place-order-btn">
+                                <i class="fas fa-lock"></i>
+                                Place Order
+                            </button>
+                            <p class="security-note">
+                                <i class="fas fa-shield-alt"></i>
+                                Your payment information is secure and encrypted
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary Sidebar -->
+                <div class="order-summary-sidebar">
+                    <div class="summary-card">
+                        <h3>Price Details</h3>
+                        <div class="summary-row">
+                            <span>Price (<span id="items-count">2</span> items)</span>
+                            <span id="items-total">₹4,998</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount</span>
+                            <span class="discount-amount" id="discount-amount">-₹1,000</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Charges</span>
+                            <span class="free" id="delivery-charges">FREE</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Packaging Fee</span>
+                            <span id="packaging-fee">₹29</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Amount</span>
+                            <span id="total-amount">₹4,027</span>
+                        </div>
+                        <div class="savings" id="total-savings">
+                            You will save ₹1,000 on this order
+                        </div>
+                    </div>
+
+                    <div class="offers-card">
+                        <h4>Available Offers</h4>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>10% Instant Discount with HDFC Bank</span>
+                        </div>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>₹200 off on orders above ₹2,999</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Address Modal -->
+    <div class="modal" id="add-address-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Address</h3>
+                <button class="modal-close" onclick="closeModal('add-address-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="address-form" onsubmit="saveAddress(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="address-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="address-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="address-street" rows="3" placeholder="House No, Building, Street, Area" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" id="address-city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <select id="address-state" required>
+                                <option value="">Select State</option>
+                                <option value="maharashtra">Maharashtra</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="karnataka">Karnataka</option>
+                                <option value="tamil-nadu">Tamil Nadu</option>
+                                <option value="gujarat">Gujarat</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" id="address-pincode" pattern="[0-9]{6}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Address Type</label>
+                            <select id="address-type" required>
+                                <option value="home">Home</option>
+                                <option value="office">Office</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="default-address">
+                            <span class="checkmark"></span>
+                            Make this my default address
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('add-address-modal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Address</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About zoroMart</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; since 2025 zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

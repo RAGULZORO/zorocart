@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - zoroMart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="goToPage('index.html')">
+                    <h1>zoroMart</h1>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for products, brands and more" id="search-input">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="action-item" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                        <span>Theme</span>
+                    </div>
+                    <div class="action-item" onclick="openLoginModal()">
+                        <i class="fas fa-user"></i>
+                        <span>Login</span>
+                    </div>
+                    <div class="action-item active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <div class="cart-badge" id="cart-badge">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Page -->
+    <main class="cart-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Shopping Cart</span>
+                </nav>
+            </div>
+
+            <div class="cart-content">
+                <div class="cart-items-section">
+                    <div class="cart-header">
+                        <h2>My Cart (2 items)</h2>
+                        <button class="clear-cart-btn" onclick="clearCart()">
+                            <i class="fas fa-trash"></i>
+                            Clear Cart
+                        </button>
+                    </div>
+
+                    <div class="cart-items" id="cart-items">
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3081/3081840.png" alt="Product">
+                            </div>
+                            <div class="item-details">
+                                <h3>Premium Wireless Headphones</h3>
+                                <p class="item-brand">AudioTech</p>
+                                <div class="item-features">
+                                    <span>Color: Black</span>
+                                    <span>•</span>
+                                    <span>Free Delivery</span>
+                                </div>
+                                <div class="item-price">
+                                    <span class="current-price">₹2,999</span>
+                                    <span class="original-price">₹4,999</span>
+                                    <span class="discount">40% off</span>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <div class="quantity-controls">
+                                    <button class="qty-btn" onclick="updateQuantity(1, -1)">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button class="qty-btn" onclick="updateQuantity(1, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="item-actions">
+                                <button class="save-later-btn">
+                                    <i class="far fa-heart"></i>
+                                    Save for Later
+                                </button>
+                                <button class="remove-btn" onclick="removeFromCart(1)">
+                                    <i class="fas fa-trash"></i>
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS-Icz8AmCHm91ZjR0Wg2j3_ALbnXIbsAPEg&s" alt="Product">
+                            </div>
+                            <div class="item-details">
+                                <h3>Smart Fitness Watch</h3>
+                                <p class="item-brand">TechFit</p>
+                                <div class="item-features">
+                                    <span>Color: Blue</span>
+                                    <span>•</span>
+                                    <span>Free Delivery</span>
+                                </div>
+                                <div class="item-price">
+                                    <span class="current-price">₹1,999</span>
+                                    <span class="original-price">₹3,999</span>
+                                    <span class="discount">50% off</span>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <div class="quantity-controls">
+                                    <button class="qty-btn" onclick="updateQuantity(2, -1)">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button class="qty-btn" onclick="updateQuantity(2, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="item-actions">
+                                <button class="save-later-btn">
+                                    <i class="far fa-heart"></i>
+                                    Save for Later
+                                </button>
+                                <button class="remove-btn" onclick="removeFromCart(2)">
+                                    <i class="fas fa-trash"></i>
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="place-order-section">
+                        <button class="place-order-btn" onclick="proceedToCheckout()">
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3>Price Details</h3>
+                        <div class="summary-row">
+                            <span>Price (2 items)</span>
+                            <span>₹8,998</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount</span>
+                            <span class="discount-amount">-₹4,000</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Charges</span>
+                            <span class="free">FREE</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Amount</span>
+                            <span>₹4,998</span>
+                        </div>
+                        <div class="savings">
+                            You will save ₹4,000 on this order
+                        </div>
+                    </div>
+
+                    <div class="offers-card">
+                        <h4>Available Offers</h4>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>10% Instant Discount with HDFC Bank</span>
+                        </div>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>₹200 off on orders above ₹2,999</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Continue Shopping -->
+            <div class="continue-shopping">
+                <button class="continue-btn" onclick="goToPage('products.html')">
+                    <i class="fas fa-arrow-left"></i>
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About zoroMart</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; since zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

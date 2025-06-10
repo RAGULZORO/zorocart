@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - zoroMart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="goToPage('index.html')">
+                    <h1>zoroMart</h1>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for products, brands and more" id="search-input">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="action-item" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                        <span>Theme</span>
+                    </div>
+                    <div class="action-item" onclick="openLoginModal()">
+                        <i class="fas fa-user"></i>
+                        <span>Login</span>
+                    </div>
+                    <div class="action-item" onclick="goToPage('cart.html')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <div class="cart-badge" id="cart-badge">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Products</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Products Page -->
+    <main class="products-page">
+        <div class="container">
+            <div class="products-layout">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="clear-filters" onclick="clearAllFilters()">Clear All</button>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Categories</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" value="electronics" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Electronics
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="fashion" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Fashion
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="home" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Home & Kitchen
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="books" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Books
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" id="price-min" min="0" max="100000" value="0" oninput="updatePriceRange()">
+                            <input type="range" id="price-max" min="0" max="100000" value="100000" oninput="updatePriceRange()">
+                            <div class="price-values">
+                                <span id="price-min-value">₹0</span>
+                                <span id="price-max-value">₹1,00,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Brand</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" value="samsung" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Samsung
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="apple" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Apple
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="nike" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Nike
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Rating</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" value="4" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                4★ & above
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" value="3" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                3★ & above
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Products Content -->
+                <div class="products-content">
+                    <div class="products-header">
+                        <div class="results-info">
+                            <h2>All Products</h2>
+                            <span class="results-count" id="results-count">Showing 1-20 of 500 results</span>
+                        </div>
+                        
+                        <div class="sort-options">
+                            <label>Sort by:</label>
+                            <select id="sort-select" onchange="sortProducts()">
+                                <option value="relevance">Relevance</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Customer Rating</option>
+                                <option value="newest">Newest First</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="products-grid" id="products-grid">
+                        <!-- Products will be loaded here -->
+                    </div>
+
+                    <div class="pagination">
+                        <button class="page-btn prev" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="page-numbers" id="page-numbers">
+                            <span class="page-num active">1</span>
+                            <span class="page-num">2</span>
+                            <span class="page-num">3</span>
+                            <span class="page-ellipsis">...</span>
+                            <span class="page-num">10</span>
+                        </div>
+                        <button class="page-btn next" onclick="nextPage()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quick-view-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Quick View</h3>
+                <button class="modal-close" onclick="closeModal('quick-view-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="quick-view-content">
+                    <div class="product-images">
+                        <img id="quick-view-image" src="/placeholder.svg" alt="">
+                    </div>
+                    <div class="product-details">
+                        <h3 id="quick-view-title"></h3>
+                        <div class="product-rating">
+                            <div class="stars" id="quick-view-rating"></div>
+                            <span class="rating-count" id="quick-view-rating-count"></span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price" id="quick-view-price"></span>
+                            <span class="original-price" id="quick-view-original-price"></span>
+                            <span class="discount" id="quick-view-discount"></span>
+                        </div>
+                        <p class="product-description" id="quick-view-description"></p>
+                        <div class="product-actions">
+                            <button class="btn-primary" onclick="addToCartFromQuickView()">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                            <button class="btn-secondary" onclick="viewProductDetails()">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Filters -->
+    <div class="mobile-filters-overlay" id="mobile-filters-overlay" onclick="closeMobileFilters()">
+        <div class="mobile-filters" onclick="event.stopPropagation()">
+            <div class="mobile-filters-header">
+                <h3>Filters</h3>
+                <button onclick="closeMobileFilters()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <!-- Same filter content as sidebar -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About zoroMart</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; since 2025 zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>

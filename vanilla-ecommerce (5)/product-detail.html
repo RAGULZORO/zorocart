@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - zoroMart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="goToPage('index.html')">
+                    <h1>zoroMart</h1>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for products, brands and more" id="search-input">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="action-item" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                        <span>Theme</span>
+                    </div>
+                    <div class="action-item" onclick="openLoginModal()">
+                        <i class="fas fa-user"></i>
+                        <span>Login</span>
+                    </div>
+                    <div class="action-item" onclick="goToPage('cart.html')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <div class="cart-badge" id="cart-badge">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Detail Page -->
+    <main class="product-detail-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="products.html">Products</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="product-breadcrumb">Product Details</span>
+                </nav>
+            </div>
+
+            <div class="product-detail-content">
+                <div class="product-images-section">
+                    <div class="image-gallery">
+                        <div class="main-image">
+                            <img id="main-product-image" src="/placeholder.svg?height=500&width=500" alt="">
+                            <div class="image-zoom" id="image-zoom"></div>
+                        </div>
+                        <div class="thumbnail-images">
+                            <img class="thumbnail active" src="/placeholder.svg?height=100&width=100" onclick="changeMainImage(this)">
+                            <img class="thumbnail" src="/placeholder.svg?height=100&width=100" onclick="changeMainImage(this)">
+                            <img class="thumbnail" src="/placeholder.svg?height=100&width=100" onclick="changeMainImage(this)">
+                            <img class="thumbnail" src="/placeholder.svg?height=100&width=100" onclick="changeMainImage(this)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info-section">
+                    <div class="product-header">
+                        <h1 id="product-title">Premium Wireless Headphones</h1>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.5</span>
+                            <span class="rating-count">(2,340 Reviews)</span>
+                        </div>
+                    </div>
+
+                    <div class="product-pricing">
+                        <div class="price-section">
+                            <span class="current-price">₹2,999</span>
+                            <span class="original-price">₹4,999</span>
+                            <span class="discount">40% off</span>
+                        </div>
+                        <div class="price-features">
+                            <span class="feature">Free delivery</span>
+                            <span class="feature">Bank Offer</span>
+                            <span class="feature">EMI available</span>
+                        </div>
+                    </div>
+
+                    <div class="product-variants">
+                        <div class="variant-section">
+                            <h4>Color</h4>
+                            <div class="color-options">
+                                <div class="color-option active" data-color="black" style="background: #000"></div>
+                                <div class="color-option" data-color="white" style="background: #fff"></div>
+                                <div class="color-option" data-color="blue" style="background: #007bff"></div>
+                                <div class="color-option" data-color="red" style="background: #dc3545"></div>
+                            </div>
+                        </div>
+
+                        <div class="variant-section">
+                            <h4>Quantity</h4>
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button class="qty-btn" onclick="increaseQuantity()">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" onclick="addToCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                        <button class="btn-secondary buy-now" onclick="buyNow()">
+                            <i class="fas fa-bolt"></i>
+                            Buy Now
+                        </button>
+                        <button class="btn-icon wishlist-btn" onclick="toggleWishlist()">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <div class="delivery-info">
+                        <h4>Delivery Options</h4>
+                        <div class="delivery-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span>Deliver to: Mumbai 400001</span>
+                                <a href="#" onclick="changePincode()">Change</a>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <i class="fas fa-truck"></i>
+                            <span>Free Delivery by Tomorrow</span>
+                        </div>
+                        <div class="delivery-item">
+                            <i class="fas fa-undo"></i>
+                            <span>7 Days Replacement Policy</span>
+                        </div>
+                    </div>
+
+                    <div class="offers-section">
+                        <h4>Available Offers</h4>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>Bank Offer: 10% off on HDFC Bank Cards</span>
+                        </div>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>Special Price: Get extra 5% off</span>
+                        </div>
+                        <div class="offer-item">
+                            <i class="fas fa-tag"></i>
+                            <span>No Cost EMI: EMI starting ₹500/month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Tabs -->
+            <div class="product-tabs">
+                <div class="tab-headers">
+                    <button class="tab-header active" onclick="switchTab('description')">Description</button>
+                    <button class="tab-header" onclick="switchTab('specifications')">Specifications</button>
+                    <button class="tab-header" onclick="switchTab('reviews')">Reviews</button>
+                    <button class="tab-header" onclick="switchTab('qa')">Q&A</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="description-tab">
+                        <h3>Product Description</h3>
+                        <p>Experience premium sound quality with these wireless headphones featuring active noise cancellation, 30-hour battery life, and premium comfort design. Perfect for music lovers and professionals alike.</p>
+                        <ul>
+                            <li>Active Noise Cancellation</li>
+                            <li>30-hour battery life</li>
+                            <li>Premium comfort design</li>
+                            <li>Bluetooth 5.0 connectivity</li>
+                            <li>Touch controls</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane" id="specifications-tab">
+                        <h3>Specifications</h3>
+                        <table class="specs-table">
+                            <tr>
+                                <td>Brand</td>
+                                <td>AudioTech</td>
+                            </tr>
+                            <tr>
+                                <td>Model</td>
+                                <td>AT-WH1000</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>Over-ear Wireless</td>
+                            </tr>
+                            <tr>
+                                <td>Battery Life</td>
+                                <td>30 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Connectivity</td>
+                                <td>Bluetooth 5.0</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>250g</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane" id="reviews-tab">
+                        <div class="reviews-summary">
+                            <div class="rating-overview">
+                                <div class="average-rating">
+                                    <span class="rating-number">4.5</span>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="total-reviews">2,340 Reviews</span>
+                                </div>
+                                <div class="rating-breakdown">
+                                    <div class="rating-bar">
+                                        <span>5★</span>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 70%"></div>
+                                        </div>
+                                        <span>70%</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>4★</span>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 20%"></div>
+                                        </div>
+                                        <span>20%</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>3★</span>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 7%"></div>
+                                        </div>
+                                        <span>7%</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>2★</span>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 2%"></div>
+                                        </div>
+                                        <span>2%</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>1★</span>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 1%"></div>
+                                        </div>
+                                        <span>1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="reviewer-details">
+                                        <span class="reviewer-name">Rahul S.</span>
+                                        <div class="review-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="review-text">Excellent sound quality and comfortable to wear for long hours. Battery life is amazing!</p>
+                                <div class="review-meta">
+                                    <span class="review-date">2 days ago</span>
+                                    <button class="helpful-btn">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        Helpful (12)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="qa-tab">
+                        <div class="qa-section">
+                            <h3>Questions & Answers</h3>
+                            <div class="ask-question">
+                                <button class="btn-secondary">Ask a Question</button>
+                            </div>
+                            <div class="qa-list">
+                                <div class="qa-item">
+                                    <div class="question">
+                                        <span class="q-label">Q:</span>
+                                        <span class="q-text">Is this compatible with iPhone?</span>
+                                    </div>
+                                    <div class="answer">
+                                        <span class="a-label">A:</span>
+                                        <span class="a-text">Yes, it's compatible with all Bluetooth devices including iPhone.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <section class="related-products">
+                <h2>Related Products</h2>
+                <div class="products-grid" id="related-products-grid">
+                    <!-- Related products will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About zoroMart</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy;since 2025 zoroMart.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>
